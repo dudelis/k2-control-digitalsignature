@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ControlType>
+  <Category>Input</Category>
+  <Group>Digital Signature</Group>
+  <Name>DigitalSignature</Name>
+  <DisplayName>Digital Signature</DisplayName>
+  <FullName>DigitalSignature.DigitalSignature.Control, DigitalSignature</FullName>
+
+  <!--<GetPropertyMethod> and <SetPropertyMethod> are the .js methods called to Get or Set  properties for the control at runtime
+	Format: {TypeFullName}.methodName}
+	-->
+  <GetPropertyMethod>DigitalSignature.DigitalSignature.getProperty</GetPropertyMethod>
+  <SetPropertyMethod>DigitalSignature.DigitalSignature.setProperty</SetPropertyMethod>
+  <GetValueMethod>DigitalSignature.DigitalSignature.getValue</GetValueMethod>
+  <SetValueMethod>DigitalSignature.DigitalSignature.setValue</SetValueMethod>
+  <GetDefaultValueMethod>DigitalSignature.DigitalSignature.getDefaultValue</GetDefaultValueMethod>
+
+  <!--<Events>
+    <Event>Init</Event>
+  </Events>  
+  <DefaultEventName>Init</DefaultEventName>-->
+
+	<ExecuteMethod>DigitalSignature.DigitalSignature.execute</ExecuteMethod>
+	<Methods>
+		<Method ResultType="None">
+			<Name>initsign</Name>
+			<DisplayName>Initialise for Signing</DisplayName>
+			<Description>Initialise signature pad for signing.</Description>
+		</Method>
+		<Method ResultType="None">
+			<Name>displayjson</Name>
+			<DisplayName>Display JSON Signature</DisplayName>
+			<Description>Display signature using JSON input</Description>
+			<Parameters>
+				<Parameter DataType="Text">
+					<Name>SigPadJSON</Name>
+					<DisplayName>JSON</DisplayName>
+					<Description>Signature in JSON format.</Description>
+					<IsRequired>true</IsRequired>
+				</Parameter>
+			</Parameters>
+		</Method>
+		<Method ResultType="None">
+			<Name>displayimg</Name>
+			<DisplayName>Display Signature Image</DisplayName>
+			<Description>Display signature Image</Description>
+			<Parameters>
+				<Parameter DataType="Number">
+					<Name>SigImgID</Name>
+					<DisplayName>Signature ID</DisplayName>
+					<Description>Signature Image ID</Description>
+					<IsRequired>true</IsRequired>
+				</Parameter>
+			</Parameters>
+		</Method>
+		<Method ResultType="Number">
+			<Name>saveasimg</Name>
+			<DisplayName>Save As Image</DisplayName>
+			<Description>Save image to smartobject</Description>
+			<Parameters>
+				<Parameter DataType="Text">
+					<Name>url</Name>
+					<DisplayName>Form URL</DisplayName>
+					<Description>URL of this form</Description>
+					<IsRequired>false</IsRequired>
+				</Parameter>
+				<Parameter DataType="Text">
+					<Name>fqn</Name>
+					<DisplayName>User FQN</DisplayName>
+					<Description>FQN of current user</Description>
+					<IsRequired>false</IsRequired>
+				</Parameter>
+			</Parameters>
+		</Method>
+		<Method ResultType="None">
+			<Name>clear</Name>
+			<DisplayName>Clear</DisplayName>
+			<Description>Clear the signature pad</Description>
+		</Method>
+	</Methods>
+
+  <Properties>
+    <!-- 2014-01-30: removed setFunction="UpdateControlText" as it is not available in 1.0.4 onwards -->
+	<Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" refreshdisplay="true" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+    <Prop ID="Title"  friendlyname="Title" type="string" category="Detail" refreshdisplay="false">
+		<Value>Signature</Value>
+    </Prop>
+    <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true">
+      <Value>true</Value>
+    </Prop>
+	<Prop ID="Width" friendlyname="Width" type="string" category="Detail" refreshdisplay="false">
+		<Value>200</Value>
+	</Prop>
+	<Prop ID="Height" friendlyname="Height" type="string" category="Detail" refreshdisplay="false">
+		<Value>60</Value>
+	</Prop>
+  </Properties>
+ 
+</ControlType>
