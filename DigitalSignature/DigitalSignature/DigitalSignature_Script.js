@@ -169,6 +169,33 @@
                 	});
                     break;
 
+                //convert on server side and get the image xml
+                case "getimg":
+                    //JSON string
+                    var jsonStr = DigitalSignature.DigitalSignature._getSigPadInstance(currentControlID).getSignatureString();
+                    //Width and height of canvas. Important. The C# conversion class needs the width and height
+                    // 2013-08-30: Ensure the replaced value is an empty string, else WebKit browsers will take it as 'undefined'
+                    var canvasWidth = $('#' + currentControlID + ' canvas.pad').attr('width').replace('px', '');
+                    var canvasHeight = $('#' + currentControlID + ' canvas.pad').attr('height').replace('px', '');
+                    $.ajax(
+                	{
+                	    type: 'POST',
+                	    url: 'DigitalSignature/DigitalSignatureGetImage.handler',
+                	    cache: false,
+                	    data: { json: jsonStr, width: canvasWidth, height: canvasHeight },
+                	    dataType: 'text',
+                	    async: false
+                	}).done(function (xmlResult) {
+                	    if (jQuery.isXMLDoc(parseXML(xmlResult))) {
+                	        $('#' + objInfo.CurrentControlId).data('file').value = xmlResult;
+                	    }
+                        else
+                	    {
+                	        alert(xmlResult);
+                	    }
+                	});
+                    break;
+
                 //clear the canvas               
                 case "clear":
                     DigitalSignature.DigitalSignature._getSigPadInstance(currentControlID).clearCanvas();

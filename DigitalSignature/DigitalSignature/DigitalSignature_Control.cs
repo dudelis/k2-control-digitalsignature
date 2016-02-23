@@ -7,6 +7,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using SourceCode.Forms.Controls.Web.SDK;
 using SourceCode.Forms.Controls.Web.SDK.Attributes;
+using System.Web.UI.HtmlControls;
 
 [assembly: WebResource("DigitalSignature.DigitalSignature.DigitalSignature_Script.js", "text/javascript", PerformSubstitution = true)]
 [assembly: WebResource("DigitalSignature.DigitalSignature.DigitalSignature_Stylesheet.css", "text/css", PerformSubstitution = true)]
@@ -16,6 +17,7 @@ using SourceCode.Forms.Controls.Web.SDK.Attributes;
 [assembly: WebResource("DigitalSignature.DigitalSignature.json2.min.js", "text/javascript", PerformSubstitution = true)]
 [assembly: WebResource("DigitalSignature.DigitalSignature.flashcanvas.js", "text/javascript", PerformSubstitution = true)]
 [assembly: WebResource("DigitalSignature.DigitalSignature.jquery.signaturepad.css", "text/css", PerformSubstitution = true)]
+[assembly: WebResource("DigitalSignature.DigitalSignature.pen.cur", "image/bmp")]
 
 namespace DigitalSignature.DigitalSignature
 {
@@ -82,6 +84,18 @@ namespace DigitalSignature.DigitalSignature
             }
         }
 
+        public string File
+        {
+            get
+            {
+                return this.GetOption<string>("file", string.Empty);
+            }
+            set
+            {
+                this.SetOption<string>("file", value, string.Empty);
+            }
+        }
+
         #region IDs
         public string ControlID
         {
@@ -115,7 +129,9 @@ namespace DigitalSignature.DigitalSignature
         #endregion
 
         #region Contructor
-        public Control() { }
+        public Control() 
+            : base("div")
+        { }
         #endregion
 
         #region Control Methods
@@ -134,49 +150,63 @@ namespace DigitalSignature.DigitalSignature
 
         protected override void RenderContents(System.Web.UI.HtmlTextWriter writer)
         {
-            LiteralControl ctrl = new LiteralControl();
+            base.RenderContents(writer);
+
             if (base.State == SourceCode.Forms.Controls.Web.Shared.ControlState.Runtime)
             {
-                string html = string.Format(@"
-                                <div class='sigPad'>
-                                    <p class='sigTitle'>{0}</p>
-                                    <div class='sig sigWrapper'>
-                                        <canvas class='pad' width='{1}px' height='{2}px'></canvas>
-                                        <input type='hidden' name='output' class='output'>
-                                    </div>
-                                </div>
-                                <div class='sigImg' style='display:none'>
-                                </div>
-                            ", this.Title, this.Width, this.Height);
-                #region sample html
-                //                @"
-//                                <div class='sigPad'>
-//                                    <label for='name'>Print your name</label>
-//                                    <input type='text' name='name' id='name' class='name'>
-//                                    <p class='typeItDesc'>Review your signature</p>
-//                                    <p class='drawItDesc'>Draw your signature</p>
-//                                    <ul class='sigNav'>
-//                                        <li class='typeIt'><a href='#type-it' class='current'>Type It</a></li>
-//                                        <li class='drawIt'><a href='#draw-it'>Draw It</a></li>
-//                                        <li class='clearButton'><a href='#clear'>Clear</a></li>
-//                                    </ul>
-//                                    <div class='sig sigWrapper'>
-//                                    <div class='typed'></div>
-//                                        <canvas class='pad' width='198' height='55'></canvas>
-//                                        <input type='hidden' name='output' class='output'>
-//                                    </div>
-//                                </div>
-                //                            ";
+                #region sample
+                //                string html = string.Format(@"
+                //                                <div class='sigPad'>
+                //                                    <p class='sigTitle'>{0}</p>
+                //                                    <div class='sig sigWrapper'>
+                //                                        <canvas class='pad' width='{1}px' height='{2}px'></canvas>
+                //                                        <input type='hidden' name='output' class='output'>
+                //                                    </div>
+                //                                </div>
+                //                                <div class='sigImg' style='display:none'>
+                //                                </div>
+                //                            ", this.Title, this.Width, this.Height);
                 #endregion
+                //sig pad
+                //<div class='sigPad'>
+                HtmlGenericControl divTagPad = new HtmlGenericControl();
+                divTagPad.Attributes.Add("class", "sigPad");
+                // <p class='sigTitle'>
+                HtmlGenericControl pTagTitle = new HtmlGenericControl("p");
+                pTagTitle.Attributes.Add("class", "sigTitle");
+                pTagTitle.InnerText = this.Title;
+                divTagPad.Controls.Add(pTagTitle);
+                // <div class='sig sigWrapper'>
+                HtmlGenericControl divTagWrapper = new HtmlGenericControl("div");
+                divTagWrapper.Attributes.Add("class", "sig sigWrapper");
+                // <canvas class='pad'
+                HtmlGenericControl canvasTag = new HtmlGenericControl("canvas");
+                canvasTag.Attributes.Add("class", "pad");
+                canvasTag.Attributes.Add("width", this.Width);
+                canvasTag.Attributes.Add("height", this.Height);
+                divTagWrapper.Controls.Add(canvasTag);
+                // <input type='hidden'
+                HtmlInputHidden hiddenOutput = new HtmlInputHidden();
+                hiddenOutput.Name = "output";
+                hiddenOutput.Attributes.Add("class", "output");
+                divTagWrapper.Controls.Add(hiddenOutput);
+                divTagPad.Controls.Add(divTagWrapper);
+                divTagPad.RenderControl(writer);
 
-                ctrl.Text = html;
+                //sig img
+                // <div class='sigImg' 
+                HtmlGenericControl divTagImg = new HtmlGenericControl("div");
+                divTagImg.Attributes.Add("class", "sigImg");
+                divTagImg.Style.Add(HtmlTextWriterStyle.Display, "none");
+                divTagImg.RenderControl(writer);
             }
             else
             {
                 //design or preview
+                LiteralControl ctrl = new LiteralControl();
                 ctrl.Text = "[Digital Signature Control]";
+                ctrl.RenderControl(writer);
             }
-            ctrl.RenderControl(writer);
         }
         #endregion
     }
