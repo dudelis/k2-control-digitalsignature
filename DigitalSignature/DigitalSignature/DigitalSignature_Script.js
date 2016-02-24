@@ -3,27 +3,30 @@
     if (typeof DigitalSignature.DigitalSignature === "undefined" || DigitalSignature.DigitalSignature == null) DigitalSignature.DigitalSignature = {};
 
     DigitalSignature.DigitalSignature = {
-        //internal method used to get a handle on the control instance
+        
         _getInstance: function (id) {
-            return DigitalSignature.DigitalSignature._getDiv(id)[0];
+            var control = jQuery('#' + id);
+            if (control.length == 0) {
+                throw 'DigitalSignature \'' + id + '\' not found';
+            } else {
+                return control[0];
+            }
         },
 
         _getSigPadInstance: function (id) {
-            var control = jQuery('#' + id + " .sigPad");
+            var control = jQuery('#' + id + ' .sigPad');
             if (control.length == 0) {
-                throw 'DigitalSignature \'' + id + '\' not found';
-            } else {
-                return control.signaturePad();
+                throw 'DigitalSignature \'' + id + '\' SignaturePad not found';
             }
+            return control.signaturePad();
         },
 
         _getSigPadInstance: function (id, options) {
-            var control = jQuery('#' + id + " .sigPad");
+            var control = jQuery('#' + id + ' .sigPad');
             if (control.length == 0) {
-                throw 'DigitalSignature \'' + id + '\' not found';
-            } else {
-                return control.signaturePad(options);
+                throw 'DigitalSignature \'' + id + '\' SignaturePad not found';
             }
+            return control.signaturePad(options);
         },
 
         getValue: function (objInfo) {
@@ -79,7 +82,7 @@
         setIsVisible: function (objInfo) {
             value = (objInfo.Value === true || objInfo.Value == 'true');
             this._isVisible = value;
-            var displayValue = (value === false) ? "none" : "block";
+            var displayValue = (value === false) ? "none" : "inherit";
             var instance = DigitalSignature.DigitalSignature._getInstance(objInfo.CurrentControlId);
             instance.style.display = displayValue;
         },
@@ -89,7 +92,7 @@
         },
 
         setSize: function (objInfo, attr) {
-            $('#' + objInfo.CurrentControlId + ' canvas.pad').attr(attr, objInfo.Value + 'px');
+            $('#' + objInfo.CurrentControlId + ' canvas.pad').attr(attr, objInfo.Value);
         },
 
         execute: function (objInfo) {
