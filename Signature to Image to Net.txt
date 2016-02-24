@@ -1,0 +1,4 @@
+Signature to Image .Net
+https://github.com/parrots/SignatureToImageDotNet
+
+License: BSD License Version: 2.0 (2012-02-11) Requirements: .NET 4.0

@@ -1,0 +1,8 @@
+Signature Pad
+https://github.com/thomasjbradley/signature-pad
+
+© 2014, Thomas J Bradley, hey@thomasjbradley.ca
+
+Signature Pad is licensed under the New BSD license.
+
+All dependencies: jQuery, json2.js, and FlashCanvas retain their own licenses.
