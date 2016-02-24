@@ -43,11 +43,37 @@
 
         //retrieve a property for the control
         getProperty: function (objInfo) {
-            if (objInfo.property.toLowerCase() == "value") {
-                return DigitalSignature.DigitalSignature.getValue(objInfo);
-            }
-            else {
-                return $('#' + objInfo.CurrentControlId).data(objInfo.property);
+            switch (objInfo.property.toLowerCase()) {
+                case "value":
+                    return DigitalSignature.DigitalSignature.getValue(objInfo);
+                    break;
+
+                case "width":
+                    return $('#' + objInfo.CurrentControlId).data('options').width;
+                    break;
+
+                case "height":
+                    return $('#' + objInfo.CurrentControlId).data('options').height;
+                    break;
+
+                case "title":
+                    return $('#' + objInfo.CurrentControlId + ' .sigTitle')[0].innerText;
+                    break;
+
+                case "isvisible":
+                    if ($('#' + objInfo.CurrentControlId).is(':visible'))
+                        return true;
+                    else
+                        return false;
+                    break;
+
+                case "file":
+                    return $('#' + objInfo.CurrentControlId).data('options').file;
+                    break;
+
+                default:
+                    return $('#' + objInfo.CurrentControlId).data(objInfo.property);
+                    break;
             }
         },
 
@@ -173,7 +199,7 @@
                     break;
 
                 //convert on server side and get the image xml
-                case "getimg":
+                case "getimgfile":
                     //JSON string
                     var jsonStr = DigitalSignature.DigitalSignature._getSigPadInstance(currentControlID).getSignatureString();
                     //Width and height of canvas. Important. The C# conversion class needs the width and height
@@ -189,8 +215,10 @@
                 	    dataType: 'text',
                 	    async: false
                 	}).done(function (xmlResult) {
-                	    if (jQuery.isXMLDoc(parseXML(xmlResult))) {
-                	        $('#' + objInfo.CurrentControlId).data('file').value = xmlResult;
+                	    tmpXml = parseXML(xmlResult);
+                	    if (jQuery.isXMLDoc(tmpXml)) {
+                	        //$('#' + currentControlID).data('options').file = tmpXml.childNodes[0].text;
+                	        $('#' + currentControlID).data('options').file = tmpXml.xml;
                 	    }
                         else
                 	    {

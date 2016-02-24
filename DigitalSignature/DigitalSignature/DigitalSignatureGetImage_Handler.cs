@@ -52,15 +52,13 @@ namespace DigitalSignature.DigitalSignature
             {
                 string result = string.Empty;
                 Bitmap bitmapImg = sit.SigJsonToImage(jsonStr);
-                long length = 0;
                 string directoryName = string.Empty;
-                string fileName = string.Empty;
+                string fileName = "signature.png";
                 string filePath = FileUtility.EnsurePath(ref directoryName, ref fileName);
                 //string pngStr = string.Empty;
                 using (MemoryStream ms = new MemoryStream())
                 {
                     bitmapImg.Save(ms, System.Drawing.Imaging.ImageFormat.Png);
-                    length = ms.Length;
                     //byte[] pngBin = new byte[ms.Length];
                     //pngBin = ms.ToArray();
                     //pngStr = "data:image/png;base64," + Convert.ToBase64String(pngBin);
@@ -70,8 +68,7 @@ namespace DigitalSignature.DigitalSignature
                         this.CopyStream(ms, fileStream);
                     }
                 }
-
-                result = "<collection><object><fields><field name='FileName'><value>" + XmlConvert.EncodeName(fileName) +"</value></field><field name='FilePath'><value>" + XmlConvert.EncodeName(filePath) + "</value></field></fields></object></collection>";
+                result = "<collection><object><fields><field name='FileName'><value>" + HttpUtility.HtmlEncode(fileName) + "</value></field><field name='FilePath'><value>" + HttpUtility.HtmlEncode(filePath) + "</value></field><field name='FileRequestData'><value></value></field></fields></object></collection>";
 
                 context.Response.ContentType = "text/xml";
                 context.Response.Write(result);
@@ -87,12 +84,8 @@ namespace DigitalSignature.DigitalSignature
 
         private void CopyStream(Stream input, Stream output)
         {
-            byte[] buffer = new byte[32768];
-            int read;
-            while ((read = input.Read(buffer, 0, buffer.Length)) > 0)
-            {
-                output.Write(buffer, 0, read);
-            }
+            input.Position = 0; //important to reset
+            input.CopyTo(output);
         }
     }
 }

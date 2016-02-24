@@ -74,9 +74,9 @@
       </Parameters>
     </Method>
     <Method ResultType="None">
-      <Name>getimg</Name>
-      <DisplayName>Get Image</DisplayName>
-      <Description>Convert and get image on server</Description>
+      <Name>getimgfile</Name>
+      <DisplayName>Get Image to File property</DisplayName>
+      <Description>Convert and get image to File property</Description>
     </Method>
     <Method ResultType="None">
       <Name>clear</Name>
@@ -104,7 +104,8 @@
       <InitialValue>60px</InitialValue>
       <Value>60px</Value>
     </Prop>
-    <Prop ID="File" friendlyname="File" type="File" category="Output" refreshdisplay="false"></Prop>
+    <Prop ID="File" friendlyname="File" type="File" category="Output" refreshdisplay="false">
+    </Prop>
   </Properties>
 
 </ControlType>
