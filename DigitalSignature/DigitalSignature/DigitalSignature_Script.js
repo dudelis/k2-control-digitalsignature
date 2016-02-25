@@ -119,6 +119,10 @@
 
         setSize: function (objInfo, attr) {
             $('#' + objInfo.CurrentControlId + ' canvas.pad').attr(attr, objInfo.Value);
+            //[JK, 20160225]: fix #8. Regenerate the display after updating canvas size
+            var ctrl = this._getSigPadInstance(objInfo.CurrentControlId);
+            var sig = ctrl.getSignatureString();
+            ctrl.regenerate(sig);
         },
 
         execute: function (objInfo) {
