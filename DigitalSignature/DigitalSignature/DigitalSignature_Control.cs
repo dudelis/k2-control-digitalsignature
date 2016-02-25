@@ -11,7 +11,8 @@ using System.Web.UI.HtmlControls;
 
 [assembly: WebResource("DigitalSignature.DigitalSignature.DigitalSignature_Script.js", "text/javascript", PerformSubstitution = true)]
 [assembly: WebResource("DigitalSignature.DigitalSignature.DigitalSignature_Stylesheet.css", "text/css", PerformSubstitution = true)]
-
+//control icon
+[assembly: WebResource("DigitalSignature.DigitalSignature.DS_Icon.png", "image/png")]
 //For Digital signature
 [assembly: WebResource("DigitalSignature.DigitalSignature.jquery.signaturepad.min.js", "text/javascript", PerformSubstitution = true)]
 [assembly: WebResource("DigitalSignature.DigitalSignature.json2.min.js", "text/javascript", PerformSubstitution = true)]
@@ -35,6 +36,9 @@ namespace DigitalSignature.DigitalSignature
     //[ClientResources("DigitalSignature.Resources.[ResrouceFileName]")]
     public class Control : BaseControl
     {
+        private ClientScriptManager cm;
+        private Type rs;
+
         #region Control Properties
         public string Title
         {
@@ -131,7 +135,12 @@ namespace DigitalSignature.DigitalSignature
         #region Contructor
         public Control() 
             : base("div")
-        { }
+        {
+            this.cm = this.Page.ClientScript;
+            this.rs = base.GetType();
+            ((SourceCode.Forms.Controls.Web.Shared.IControl)this).DesignFormattingPaths
+                .Add("stylecss", "DigitalSignature.DigitalSignature.DigitalSignature_Stylesheet.css");
+        }
         #endregion
 
         #region Control Methods
@@ -203,9 +212,15 @@ namespace DigitalSignature.DigitalSignature
             else
             {
                 //design or preview
-                LiteralControl ctrl = new LiteralControl();
-                ctrl.Text = "[Digital Signature Control]";
-                ctrl.RenderControl(writer);
+                HtmlGenericControl divTagBase = new HtmlGenericControl("div");
+                HtmlImage icon = new HtmlImage();
+                icon.Src = this.cm.GetWebResourceUrl(this.rs, "DigitalSignature.DigitalSignature.DS_Icon.png");
+                icon.Border = 0;
+                divTagBase.Controls.Add(icon);
+                HtmlGenericControl lblTag = new HtmlGenericControl("span");
+                lblTag.InnerText = "Digital Signature Control";
+                divTagBase.Controls.Add(lblTag);
+                divTagBase.RenderControl(writer);
             }
         }
         #endregion

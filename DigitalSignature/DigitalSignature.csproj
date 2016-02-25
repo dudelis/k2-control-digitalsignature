@@ -122,7 +122,9 @@
   <ItemGroup>
     <EmbeddedResource Include="DigitalSignature\DigitalSignature_Stylesheet.css" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="DigitalSignature\DS_Icon.png" />
+  </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="DigitalSignature\flashcanvas.js" />
     <EmbeddedResource Include="DigitalSignature\flashcanvas.swf" />
