@@ -8,29 +8,29 @@ You could also specify a different class and set the class in the .cs file like 
 	/* e.g. background-color: inherit; */
 }
 
-.treeli.digitalsignature-control>a,
-.treeli.digitalsignature-control>span,
-.treeli.digitalsignature-control.children>a,
-.treeli.digitalsignature-control.children.open>a,
-.treeli.digitalsignature-control.children.closed>a,
-.treeli.digitalsignature-control.children>span,
+.tree li.digitalsignature-control > a,
+.tree li.digitalsignature-control > span,
+.tree li.digitalsignature-control.children > a,
+.tree li.digitalsignature-control.children.open > a,
+.tree li.digitalsignature-control.children.closed > a,
+.tree li.digitalsignature-control.children > span,
 /* Rules Designer: Action configuration target mappings screens where the control has been dropped (2) */
-.token-input.entity.icon.digitalsignature-control.entity-text,
+.token-input .entity.icon.digitalsignature-control .entity-text,
 /* Rules Designer: Navigate to Form action in the URL preview (3) */
-#FormNavigatePreviewPanel.token.digitalsignature-control,
+#FormNavigatePreviewPanel .token.digitalsignature-control,
 /* View/Form Designer: Droppable control's list on the right and the change control popup list(4) */
 .toolboxitem.digitalsignature-control,
 /* Runtime: List View filter mappings popup target dropped control (5) */
-.theme-entry.drop-item.digitalsignature-control,
+.theme-entry .drop-item.digitalsignature-control,
 /* Runtime: List View filter mappings popup context tree (6) */
-.theme-entry.treeli.digitalsignature-control>a,
-.theme-entry.treeli.digitalsignature-control.children.open>a,
-.theme-entry.treeli.digitalsignature-control.children.closed>a,
-.theme-entry.treeli.digitalsignature-control>span,
+.theme-entry .tree li.digitalsignature-control > a,
+.theme-entry .tree li.digitalsignature-control.children.open > a,
+.theme-entry .tree li.digitalsignature-control.children.closed > a,
+.theme-entry .tree li.digitalsignature-control > span,
 /* Rule Designer: Action hot spot context menu (7) */
-.menua.menu-item.control-digitalsignaturespan.menu-item-icon,
+.menu a.menu-item.control-digitalsignature span.menu-item-icon,
 /* Rule Designer: Action configuration target mappings tree (8) */
-.input-control.icon-control.digitalsignature-control.input-control-icon,
+.input-control.icon-control.digitalsignature-control .input-control-icon,
 /* Rule Designer: Transfer data action configuration target mappings screen dropped item (9) */
 .drop-item.digitalsignature-control,
 /* View Designer: While dragging and dropping control on to the canvas (10) */
