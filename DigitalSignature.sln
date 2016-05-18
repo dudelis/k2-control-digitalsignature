@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30501.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DigitalSignature", "DigitalSignature\DigitalSignature.csproj", "{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}"
+EndProject
+Project("{D50D8A3F-5CE1-4E89-9491-F84FAB0E386A}") = "DigitalSignatureObjects", "DigitalSignatureObjects\DigitalSignatureObjects.k2proj", "{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DebugCopyLocal|Any CPU = DebugCopyLocal|Any CPU
+		DebugRegisterCopyLocal|Any CPU = DebugRegisterCopyLocal|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.DebugCopyLocal|Any CPU.ActiveCfg = DebugCopyLocal|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.DebugCopyLocal|Any CPU.Build.0 = DebugCopyLocal|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.DebugRegisterCopyLocal|Any CPU.ActiveCfg = DebugRegisterCopyLocal|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.DebugRegisterCopyLocal|Any CPU.Build.0 = DebugRegisterCopyLocal|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB5D32E2-E2A1-490C-A442-BCBBFAFDDC0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.DebugCopyLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.DebugCopyLocal|Any CPU.Build.0 = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.DebugCopyLocal|Any CPU.Deploy.0 = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.DebugRegisterCopyLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.DebugRegisterCopyLocal|Any CPU.Build.0 = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.DebugRegisterCopyLocal|Any CPU.Deploy.0 = Debug|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B3CFCDF-EA01-45D9-915F-5E07753F08FC}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

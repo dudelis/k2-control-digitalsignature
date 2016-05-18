@@ -131,6 +131,8 @@
             var method = objInfo.methodName;
             var result = "";
             var currentControlID = objInfo.CurrentControlID; //need to use CurrentControlID instead of CurrentControlId in this method.
+            var ctrlOptions = $('#' + currentControlID).data('options');
+
             switch (method) {
 
                 //for signing               
@@ -175,7 +177,7 @@
                 	    dataType: 'text',
                 	    async: false
                 	}).success(function (data) {
-                	    $('#' + currentControlID + ' .sigImg').html('<img src="' + data + '" />').show();
+                	    $('#' + currentControlID + ' .sigImg').html('<img src="' + data + '" border="0" style="width:' + ctrlOptions.width + ';height:' + ctrlOptions.height + ';" />').show();
                 	});
                     break;
 
