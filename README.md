@@ -4,7 +4,7 @@ This is a K2 smarforms control that wraps the [Signature Pad](https://github.com
 
 ### Version Info ###
 
-* v1.1
+* v1.2
 * Tested for K2 smartforms 4.6.11
 * Built with Visual Studio 2013
 
@@ -12,12 +12,4 @@ This is a K2 smarforms control that wraps the [Signature Pad](https://github.com
 ### How do I get set up? ###
 
 * Build and deploy using VS 2013
-* look at "v1.1 Deploy" folder in the folder
-
-### Help? ###
-
-* Submit issue or help yourself
-
-### Who do I talk to? ###
-
-* No one
+* look at "v1.2 Deploy" folder in the folder
