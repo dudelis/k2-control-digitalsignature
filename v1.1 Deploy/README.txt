@@ -1,2 +1,0 @@
-1. use SmartObject Service Tester to import "DigitalSignature-SmartObject-SmartBox_Service.publish"
-2. Review "Release\RegisterCustomControl.bat" content and change the deployment location as required and execute the batch file to deploy.
