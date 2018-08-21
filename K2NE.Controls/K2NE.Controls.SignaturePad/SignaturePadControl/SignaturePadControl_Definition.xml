@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<ControlType>
+  <Category>Input</Category>
+  <Group>K2NE Controls</Group>
+  <Name>SignaturePad</Name>
+  <DisplayName>Signature Pad</DisplayName>
+  <FullName>K2NE.Controls.SignaturePad.SignaturePadControl.Control, K2NE.Controls.SignaturePad</FullName>
+
+  <!--<GetPropertyMethod> and <SetPropertyMethod> are the .js methods called to Get or Set  properties for the control at runtime
+	Format: {TypeFullName}.methodName}
+	-->
+  <GetPropertyMethod>DigitalSignature.DigitalSignature.getProperty</GetPropertyMethod>
+  <SetPropertyMethod>DigitalSignature.DigitalSignature.setProperty</SetPropertyMethod>
+  <GetValueMethod>DigitalSignature.DigitalSignature.getValue</GetValueMethod>
+  <SetValueMethod>DigitalSignature.DigitalSignature.setValue</SetValueMethod>
+  <GetDefaultValueMethod>DigitalSignature.DigitalSignature.getDefaultValue</GetDefaultValueMethod>
+
+  <!--<Events>
+    <Event>Init</Event>
+  </Events>  
+  <DefaultEventName>Init</DefaultEventName>-->
+
+  <ExecuteMethod>DigitalSignature.DigitalSignature.execute</ExecuteMethod>
+  <Methods>
+    <Method ResultType="None">
+      <Name>initsign</Name>
+      <DisplayName>Initialise for Signing</DisplayName>
+      <Description>Initialise signature pad for signing.</Description>
+    </Method>
+    <Method ResultType="None">
+      <Name>displayjson</Name>
+      <DisplayName>Display JSON Signature</DisplayName>
+      <Description>Display signature using JSON input</Description>
+      <Parameters>
+        <Parameter DataType="Text">
+          <Name>SigPadJSON</Name>
+          <DisplayName>JSON</DisplayName>
+          <Description>Signature in JSON format.</Description>
+          <IsRequired>true</IsRequired>
+        </Parameter>
+      </Parameters>
+    </Method>
+    <Method ResultType="None">
+      <Name>displayimg</Name>
+      <DisplayName>Display Signature Image</DisplayName>
+      <Description>Display signature Image</Description>
+      <Parameters>
+        <Parameter DataType="Number">
+          <Name>SigImgID</Name>
+          <DisplayName>Signature ID</DisplayName>
+          <Description>Signature Image ID</Description>
+          <IsRequired>true</IsRequired>
+        </Parameter>
+      </Parameters>
+    </Method>
+    <Method ResultType="Number">
+      <Name>saveasimg</Name>
+      <DisplayName>Save As Image</DisplayName>
+      <Description>Save image to smartobject</Description>
+      <Parameters>
+        <Parameter DataType="Text">
+          <Name>url</Name>
+          <DisplayName>Form URL</DisplayName>
+          <Description>URL of this form</Description>
+          <IsRequired>false</IsRequired>
+        </Parameter>
+        <Parameter DataType="Text">
+          <Name>fqn</Name>
+          <DisplayName>User FQN</DisplayName>
+          <Description>FQN of current user</Description>
+          <IsRequired>false</IsRequired>
+        </Parameter>
+      </Parameters>
+    </Method>
+    <Method ResultType="None">
+      <Name>getimgfile</Name>
+      <DisplayName>Get Image to File property</DisplayName>
+      <Description>Convert and get image to File property</Description>
+    </Method>
+    <Method ResultType="None">
+      <Name>clear</Name>
+      <DisplayName>Clear</DisplayName>
+      <Description>Clear the signature pad</Description>
+    </Method>
+  </Methods>
+
+  <Properties>
+    <Prop ID="ControlName" ValidationPattern="\S" ValidationMessage="InvalidName" refreshdisplay="true" DesignerValidate="SourceCode.Forms.Designers.validateControlName" friendlyname="Name" type="string" category="Detail" inputlength="255" />
+    <Prop ID="IsVisible" friendlyname="Visible" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsVisible">
+      <InitialValue>true</InitialValue>
+      <Value>true</Value>
+    </Prop>
+    <Prop ID="IsEnabled" friendlyname="Enabled" type="bool" category="General" refreshdisplay="true" setFunction="SetControlIsEnabled">
+      <InitialValue>true</InitialValue>
+      <Value>true</Value>
+    </Prop>
+    <Prop ID="Width"
+          friendlyname="Width"
+          type="string"
+          category="General"
+          refreshdisplay="true"
+          ValidationPattern="^$|^(100|[0-9]{1,2})%?$|^(3276[0-7]|327[0-5]\d|32[0-6]\d{2}|3[0-1]\d{3}|[1-2]\d{4}|[1-9]\d{0,3}|\d){1}(px)?$"
+          ValidationMessage="InvalidWidth"
+          inputlength="20"
+          setFunction="K2NE.Controls.SignaturePad.BaseType._setWidth"
+          getFunction="K2NE.Controls.SignaturePad.BaseType._getWidth">
+      <InitialValue>200</InitialValue>
+    </Prop>
+    <Prop ID="Height"
+          friendlyname="Height"
+          type="string"
+          category="General"
+          refreshdisplay="true"
+          ValidationPattern="^$|^(3276[0-7]|327[0-5]\d|32[0-6]\d{2}|3[0-1]\d{3}|[1-2]\d{4}|[1-9]\d{0,3}|\d){1}(px)?$"
+          ValidationMessage="InvalidHeight"
+          setFunction="K2NE.Controls.SignaturePad.BaseType._setHeight"
+          getFunction="K2NE.Controls.SignaturePad.BaseType._getHeight"
+          inputlength="20">
+    </Prop>
+    <Prop ID="DrawOnly" friendlyname="Draw Only" type="bool" category="General" refreshdisplay="false" collapseCategory="true">
+      <InitialValue>true</InitialValue>
+      <Value>true</Value>
+    </Prop>
+    <Prop ID="BackgroundColor" friendlyname="Background Color" refreshdisplay="false" type="string" category="General" collapseCategory="true">
+      <InitialValue>#fff</InitialValue>
+    </Prop>
+    <!--Pen Properties-->
+    <Prop ID="PenColor" friendlyname="Color" refreshdisplay="false" type="string" category="Pen" collapseCategory="true">
+      <InitialValue>#145394</InitialValue>
+      <Value>#145394</Value>
+    </Prop>
+    <Prop ID="PenWidth" friendlyname="Width" refreshdisplay="false" type="int" category="Pen" collapseCategory="true">
+      <InitialValue>2</InitialValue>
+      <Value>2</Value>
+    </Prop>
+    <Prop ID="PenCap" friendlyname="Cap" refreshdisplay="false" type="drop" category="Pen" SelectionValue="round|butt|square" SelectionText="round|butt|square" collapseCategory="true">
+      <InitialValue>round</InitialValue>
+      <Value>round</Value>
+    </Prop>
+    <!--Line Properties-->
+    <Prop ID="LineColor" friendlyname="Color" refreshdisplay="false" type="string" category="Line" collapseCategory="true">
+      <InitialValue>#ccc</InitialValue>
+      <Value>#ccc</Value>
+    </Prop>
+    <Prop ID="LineWidth" friendlyname="Width" refreshdisplay="false" type="int" category="Line" collapseCategory="true">
+      <InitialValue>2</InitialValue>
+      <Value>2</Value>
+    </Prop>
+    <Prop ID="LineMargin" friendlyname="Margin" refreshdisplay="false" type="int" category="Line" collapseCategory="true">
+      <InitialValue>2</InitialValue>
+      <Value>2</Value>
+    </Prop>
+    <Prop ID="LineTop" friendlyname="Top" refreshdisplay="false" type="int" category="Line" collapseCategory="true">
+      <InitialValue>35</InitialValue>
+      <Value>35</Value>
+    </Prop>
+    <Prop ID="Styles"
+        setFunction="K2NE.Controls.SignaturePad.BaseType._setStyles"
+        friendlyname="Styles" type="complex" category="Styles"
+        refreshdisplay="true"
+        DesignerSet="SourceCode.Forms.Designers.View.Styles._showEditStyles"/>
+
+
+  </Properties>
+  <Styles>
+    <Style IsDefault="True">
+      <Border>
+        <Right>
+          <Style />
+          <Width />
+          <Color />
+        </Right>
+        <Left>
+          <Style />
+          <Width />
+          <Color />
+        </Left>
+        <Default>
+          <Style />
+          <Width />
+          <Color />
+        </Default>
+        <Top>
+          <Style />
+          <Width />
+          <Color />
+        </Top>
+        <Bottom>
+          <Style />
+          <Width />
+          <Color />
+        </Bottom>
+      </Border>
+      <Padding>
+        <Default />
+        <Top />
+        <Left />
+        <Bottom />
+        <Right />
+      </Padding>
+      <Margin>
+        <Default />
+        <Top />
+        <Left />
+        <Bottom />
+        <Right />
+      </Margin>
+      <!--<Font>
+        <Family />
+        <Size />
+        <Color />
+        <Style />
+        <Weight />
+      </Font>-->
+      <BackgroundColor />
+      <!--<Text>
+        <Decoration />
+        <Align />
+      </Text>-->
+    </Style>
+  </Styles>
+
+</ControlType>

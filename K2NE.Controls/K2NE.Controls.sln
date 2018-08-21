@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "K2NE.Controls.SignaturePad", "K2NE.Controls.SignaturePad\K2NE.Controls.SignaturePad.csproj", "{AE320A3C-0DC4-4703-8664-B684A96FE082}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		DebugRegisterCopyLocal|Any CPU = DebugRegisterCopyLocal|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AE320A3C-0DC4-4703-8664-B684A96FE082}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE320A3C-0DC4-4703-8664-B684A96FE082}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE320A3C-0DC4-4703-8664-B684A96FE082}.DebugRegisterCopyLocal|Any CPU.ActiveCfg = DebugRegisterCopyLocal|Any CPU
+		{AE320A3C-0DC4-4703-8664-B684A96FE082}.DebugRegisterCopyLocal|Any CPU.Build.0 = DebugRegisterCopyLocal|Any CPU
+		{AE320A3C-0DC4-4703-8664-B684A96FE082}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE320A3C-0DC4-4703-8664-B684A96FE082}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

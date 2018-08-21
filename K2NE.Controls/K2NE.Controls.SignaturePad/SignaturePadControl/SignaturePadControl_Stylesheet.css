@@ -1,0 +1,40 @@
+﻿/*
+by default the namespace + "-" + class name is the css class of your custom control. Periods in the namespace
+are replaced with dashes 
+You could also specify a different class and set the class in the .cs file like so: this.Attributes.Add("class", "myCustomClass");
+*/
+.signaturepad-control
+{
+	/* e.g. background-color: inherit; */
+}
+
+.tree li.signaturepad-control > a,
+.tree li.signaturepad-control > span,
+.tree li.signaturepad-control.children > a,
+.tree li.signaturepad-control.children.open > a,
+.tree li.signaturepad-control.children.closed > a,
+.tree li.signaturepad-control.children > span,
+/* Rules Designer: Action configuration target mappings screens where the control has been dropped (2) */
+.token-input .entity.icon.signaturepad-control .entity-text,
+/* Rules Designer: Navigate to Form action in the URL preview (3) */
+#FormNavigatePreviewPanel .token.signaturepad-control,
+/* View/Form Designer: Droppable control's list on the right and the change control popup list(4) */
+.toolboxitem.signaturepad-control,
+/* Runtime: List View filter mappings popup target dropped control (5) */
+.theme-entry .drop-item.signaturepad-control,
+/* Runtime: List View filter mappings popup context tree (6) */
+.theme-entry .tree li.signaturepad-control > a,
+.theme-entry .tree li.signaturepad-control.children.open > a,
+.theme-entry .tree li.signaturepad-control.children.closed > a,
+.theme-entry .tree li.signaturepad-control > span,
+/* Rule Designer: Action hot spot context menu (7) */
+.menu a.menu-item.control-digitalsignature span.menu-item-icon,
+/* Rule Designer: Action configuration target mappings tree (8) */
+.input-control.icon-control.signaturepad-control .input-control-icon,
+/* Rule Designer: Transfer data action configuration target mappings screen dropped item (9) */
+.drop-item.signaturepad-control,
+/* View Designer: While dragging and dropping control on to the canvas (10) */
+a.ui-draggable-dragging.signaturepad-control
+{
+ background-image:url(<%= WebResource("K2NE.Controls.SignaturePad.Resources.icon.png")%>);
+}
