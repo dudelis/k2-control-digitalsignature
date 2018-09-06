@@ -159,7 +159,7 @@
 	    _setStyles: function (wrapper, styles, target) {
 	        var isRuntime = (wrapper == null);
 	        var options = {};
-	        var element = isRuntime ? jQuery(target) : wrapper.find("[class^='SFC K2NE-Controls-ChartJsDashboard']");
+	        var element = isRuntime ? jQuery(target) : wrapper.find("[class^='SFC K2NE-Controls-SignaturePad-SignaturePadControl-Control']");
 
 	        jQuery.extend(options, {
 	            "border": element,

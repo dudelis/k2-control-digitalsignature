@@ -10,23 +10,28 @@
   <!--<GetPropertyMethod> and <SetPropertyMethod> are the .js methods called to Get or Set  properties for the control at runtime
 	Format: {TypeFullName}.methodName}
 	-->
-  <GetPropertyMethod>DigitalSignature.DigitalSignature.getProperty</GetPropertyMethod>
-  <SetPropertyMethod>DigitalSignature.DigitalSignature.setProperty</SetPropertyMethod>
-  <GetValueMethod>DigitalSignature.DigitalSignature.getValue</GetValueMethod>
-  <SetValueMethod>DigitalSignature.DigitalSignature.setValue</SetValueMethod>
-  <GetDefaultValueMethod>DigitalSignature.DigitalSignature.getDefaultValue</GetDefaultValueMethod>
-
+  <GetPropertyMethod>K2NE.Controls.SignaturePad.Control.getProperty</GetPropertyMethod>
+  <SetPropertyMethod>K2NE.Controls.SignaturePad.Control.setProperty</SetPropertyMethod>
+  <GetValueMethod>K2NE.Controls.SignaturePad.Control.getProperty</GetValueMethod>
+  <SetValueMethod>K2NE.Controls.SignaturePad.Control.setValue</SetValueMethod>
+  <GetDefaultValueMethod>K2NE.Controls.SignaturePad.Control.getDefaultValue</GetDefaultValueMethod>
+  <ExecuteMethod>K2NE.Controls.SignaturePad.Control.execute</ExecuteMethod>
   <!--<Events>
     <Event>Init</Event>
   </Events>  
   <DefaultEventName>Init</DefaultEventName>-->
 
-  <ExecuteMethod>DigitalSignature.DigitalSignature.execute</ExecuteMethod>
+  
   <Methods>
     <Method ResultType="None">
       <Name>initsign</Name>
       <DisplayName>Initialise for Signing</DisplayName>
       <Description>Initialise signature pad for signing.</Description>
+    </Method>
+    <Method ResultType="None">
+      <Name>getimage</Name>
+      <DisplayName>Get Image</DisplayName>
+      <Description>Download image with a signature</Description>
     </Method>
     <Method ResultType="None">
       <Name>displayjson</Name>
@@ -122,6 +127,7 @@
       <InitialValue>true</InitialValue>
       <Value>true</Value>
     </Prop>
+    <Prop ID="FileName" friendlyname="File Name" type="string" category="Detail" inputlength="255" />
     <Prop ID="BackgroundColor" friendlyname="Background Color" refreshdisplay="false" type="string" category="General" collapseCategory="true">
       <InitialValue>#fff</InitialValue>
     </Prop>

@@ -15,11 +15,8 @@ using System.Web.UI.HtmlControls;
 [assembly: WebResource("K2NE.Controls.SignaturePad.SignaturePadControl.SignaturePadControl_Stylesheet.css", "text/css", PerformSubstitution = true)]
 
 //Resources scripts
-[assembly: WebResource("K2NE.Controls.SignaturePad.Resources.jquery.signaturepad.min.js", "text/javascript", PerformSubstitution = true)]
-[assembly: WebResource("K2NE.Controls.SignaturePad.Resources.json2.min.js", "text/javascript", PerformSubstitution = true)]
-[assembly: WebResource("K2NE.Controls.SignaturePad.Resources.flashcanvas.js", "text/javascript", PerformSubstitution = true)]
-//Stylesheets
-[assembly: WebResource("K2NE.Controls.SignaturePad.Resources.jquery.signaturepad.css", "text/css", PerformSubstitution = true)]
+[assembly: WebResource("K2NE.Controls.SignaturePad.Resources.signature_pad.min.js", "text/javascript", PerformSubstitution = true)]
+
 
 //Images
 [assembly: WebResource("K2NE.Controls.SignaturePad.Resources.icon.png", "image/png")]
@@ -29,13 +26,10 @@ using System.Web.UI.HtmlControls;
 namespace K2NE.Controls.SignaturePad.SignaturePadControl
 {
 
-    [ClientScript("K2NE.Controls.SignaturePad.Resources.jquery.signaturepad.min.js", ClientScriptAttribute.Scopes.Both, 0)]
-    [ClientScript("K2NE.Controls.SignaturePad.Resources.json2.min.js", ClientScriptAttribute.Scopes.Both, 0)]
-    [ClientScript("K2NE.Controls.SignaturePad.Resources.flashcanvas.js", ClientScriptAttribute.Scopes.Both, 0)]
+    [ClientScript("K2NE.Controls.SignaturePad.Resources.signature_pad.min.js", ClientScriptAttribute.Scopes.Both, 0)]
     [ClientScript("K2NE.Controls.SignaturePad.SignaturePadControl.SignaturePadControl_BaseScript.js", ClientScriptAttribute.Scopes.Both, 1)]
     [ClientScript("K2NE.Controls.SignaturePad.SignaturePadControl.SignaturePadControl_Script.js", ClientScriptAttribute.Scopes.Both, 2)]
     [ControlTypeDefinition("K2NE.Controls.SignaturePad.SignaturePadControl.SignaturePadControl_Definition.xml")]
-    [ClientCss("K2NE.Controls.SignaturePad.Resources.jquery.signaturepad.css")]
     [ClientCss("K2NE.Controls.SignaturePad.SignaturePadControl.SignaturePadControl_Stylesheet.css")]
     public class Control : BaseControl
     {
@@ -55,7 +49,8 @@ namespace K2NE.Controls.SignaturePad.SignaturePadControl
         public string Value { get; set; }
         public string Width { get; set; }
         public string Height { get; set; }
-        
+        public string FileName { get; set; }
+
         public bool DrawOnly { get; set; }
         public string BackgroundColor { get; set; }
         //Pen properties
@@ -131,6 +126,7 @@ namespace K2NE.Controls.SignaturePad.SignaturePadControl
                     break;
                 case SourceCode.Forms.Controls.Web.Shared.ControlState.Runtime:
                     //do any runtime manipulation here
+                    this.Options.Add("filename", this.FileName);
                     this.Options.Add("width", this.Width);
                     this.Options.Add("height", this.Height);
                     this.Options.Add("drawOnly", this.DrawOnly);
@@ -152,38 +148,46 @@ namespace K2NE.Controls.SignaturePad.SignaturePadControl
             base.RenderContents(writer);
             if (base.State == SourceCode.Forms.Controls.Web.Shared.ControlState.Runtime)
             {
-                var divSigPadWrapper = new HtmlGenericControl("div");
-                divSigPadWrapper.Attributes.Add("class", "sigpadwrapper");
-                divSigPadWrapper.ID = this.ID + "_sigpadwrapper";
+                var divWrapper = new HtmlGenericControl("div");
+                divWrapper.Attributes.Add("class", "signaturepad-wrapper");
+                divWrapper.ID = this.ID + "_wrapper";
 
-                //sig pad
-                //<div class='sigPad'>
-                var divSigPad = new HtmlGenericControl("div");
-                divSigPad.Attributes.Add("class", "sigPad");
+                var canvas = new HtmlGenericControl("canvas");
+                canvas.Attributes.Add("class", "signaturepad-canvas");
+                canvas.ID = this.ID + "_canvas";
 
-               // <div class='sig sigWrapper'>
-                var divTagWrapper = new HtmlGenericControl("div");
-                divTagWrapper.Attributes.Add("class", "sig sigWrapper");
-                // <canvas class='pad'
-                HtmlGenericControl canvasTag = new HtmlGenericControl("canvas");
-                canvasTag.Attributes.Add("class", "pad");
-                divTagWrapper.Controls.Add(canvasTag);
-               
-                divSigPad.Controls.Add(divTagWrapper);
-                
+                divWrapper.Controls.Add(canvas);
+
+                divWrapper.RenderControl(writer);
+
+                // //sig pad
+                // //<div class='sigPad'>
+                // var divSigPad = new HtmlGenericControl("div");
+                // divSigPad.Attributes.Add("class", "sigPad");
+
+                //// <div class='sig sigWrapper'>
+                // var divTagWrapper = new HtmlGenericControl("div");
+                // divTagWrapper.Attributes.Add("class", "sig sigWrapper");
+                // // <canvas class='pad'
+                // HtmlGenericControl canvasTag = new HtmlGenericControl("canvas");
+                // canvasTag.Attributes.Add("class", "pad");
+                // divTagWrapper.Controls.Add(canvasTag);
+
+                // divSigPad.Controls.Add(divTagWrapper);
 
 
-                //sig img
-                // <div class='sigImg' 
-                HtmlGenericControl divTagImg = new HtmlGenericControl("div");
-                divTagImg.Attributes.Add("class", "sigImg");
-                divTagImg.Style.Add(HtmlTextWriterStyle.Display, "none");
+
+                // //sig img
+                // // <div class='sigImg' 
+                // HtmlGenericControl divTagImg = new HtmlGenericControl("div");
+                // divTagImg.Attributes.Add("class", "sigImg");
+                // divTagImg.Style.Add(HtmlTextWriterStyle.Display, "none");
 
 
-                divSigPadWrapper.Controls.Add(divSigPad);
-                divSigPadWrapper.Controls.Add(divTagImg);
+                // divSigPadWrapper.Controls.Add(divSigPad);
+                // divSigPadWrapper.Controls.Add(divTagImg);
 
-                divSigPadWrapper.RenderControl(writer);
+
             }
             else
             {

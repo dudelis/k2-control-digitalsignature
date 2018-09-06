@@ -66,7 +66,6 @@
     <None Include="K2NESignatureKey.snk" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Resources\flashcanvas.js" />
     <EmbeddedResource Include="Resources\pen.cur" />
   </ItemGroup>
   <ItemGroup>
@@ -75,14 +74,14 @@
   <ItemGroup>
     <EmbeddedResource Include="Resources\icon.png" />
     <EmbeddedResource Include="Resources\placeholder.png" />
-    <EmbeddedResource Include="Resources\jquery.signaturepad.css" />
-    <EmbeddedResource Include="Resources\jquery.signaturepad.min.js" />
-    <EmbeddedResource Include="Resources\json2.min.js" />
     <EmbeddedResource Include="SignaturePadControl\SignaturePadControl_Script.js" />
     <EmbeddedResource Include="SignaturePadControl\SignaturePadControl_Stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="SignaturePadControl\SignaturePadControl_BaseScript.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\signature_pad.min.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
